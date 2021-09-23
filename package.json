@@ -1,0 +1,17 @@
+{
+  "name": "samptest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.0.0",
+    "md5": "^2.3.0",
+    "mysql": "^2.18.1",
+    "samp-node-lib": "^1.0.5"
+  }
+}

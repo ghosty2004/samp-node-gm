@@ -38,7 +38,7 @@ require("./variables/player.js"); /* Here is the player variables */
 require("./variables/server.js"); /* Here is the server variables */
 require("./variables/textdraws.js"); /* Here is the textdraw's variables */
 require("./enums/colors.js"); /* Colors enum */
-require("./enums/vehicles.js"); /* Vehicles validation enum */
+require("./enums/vehicles.js"); /* Vehicles name enum */
 
 /* For Streamer */
 const streamer = {

@@ -8,7 +8,7 @@ This is a SA:MP (San Andreas Multi Player) gamemode write in NodeJS
 4. Start the server.
 
 # Where is the script source ?
-`root directory\resources\index.js`
+`server root directory\resources\index.js`
 
 # NPM Modules
 `samp-node-lib` - **npm install samp-node-lib**<br>

@@ -172,7 +172,7 @@ samp.OnPlayerConnect((player) => {
     resetPlayerVariables(player.playerid);
     preparatePlayerForLogin(player);
     player.SetPlayerVirtualWorld(player.playerid + 1000);
-    loadPlayerTD(player.playerid);
+    //loadPlayerTD(player.playerid);
     return true;
 });
 
@@ -212,7 +212,7 @@ samp.OnPlayerCommandText((player, cmdtext) => {
 
         if(CMD.eventNames().some(s => s == temp_string)) {
             params.shift();
-            command.emit(`${temp_string}`, player.playerid, params);
+            CMD.emit(`${temp_string}`, player.playerid, params);
         }
         else SCM(player.playerid, 0xFF0000AA, `[e-Force]: {FFFFFF}Comanda {FF0000}/${temp_string} {FFFFFF}nu exista. Foloseste {FF0000}/help {FFFFFF}sau {FF0000}/cmds {FFFFFF}pentru ajutor.`);
     }

@@ -38,7 +38,7 @@ require("./variables/player.js"); /* Here is the player variables */
 require("./variables/server.js"); /* Here is the server variables */
 require("./variables/textdraws.js"); /* Here is the textdraw's variables */
 require("./enums/colors.js"); /* Colors enum */
-require("./enums/vehicles.js"); /* Vehicles name enum */
+require("./enums/vehicles.js"); /* Vehicles validation enum */
 
 /* For Streamer */
 const streamer = {
@@ -172,7 +172,7 @@ samp.OnPlayerConnect((player) => {
     resetPlayerVariables(player.playerid);
     preparatePlayerForLogin(player);
     player.SetPlayerVirtualWorld(player.playerid + 1000);
-    //loadPlayerTD(player.playerid);
+    loadPlayerTD(player.playerid);
     return true;
 });
 
@@ -478,7 +478,7 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                         break;
                     }
                     case 1: {
-                        command.emit("createspawn", player.playerid);
+                        CMD.emit("createspawn", player.playerid);
                         break;
                     }
                     case 2: {
@@ -502,7 +502,7 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                                 }
                             });
                         }
-                        else command.emit("createspawn", player.playerid);
+                        else CMD.emit("createspawn", player.playerid);
                         break;
                     }
                 }
@@ -516,12 +516,12 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                 con.query("SELECT * FROM spawnzones WHERE name = ?", [inputtext], function(err, result) {
                     if(result == 0) {
                         PlayerInfo.Current_Create_Spawn.Name[player.playerid] = inputtext;
-                        command.emit("createspawn", player.playerid);
+                        CMD.emit("createspawn", player.playerid);
                     }
                     else player.ShowPlayerDialog(DIALOG_CREATE_SPAWN_NAME, samp.DIALOG_STYLE.INPUT, "Create Spawn - {FF0000}Name", "Please insert below a spawn name.\nThis spawn zone already exists.", "Set", "Back");
                 });
             }
-            else command.emit("createspawn", player.playerid);
+            else CMD.emit("createspawn", player.playerid);
             break;
         }
         case DIALOG_HOUSE_ENTER_PASSWORD: {
@@ -657,7 +657,7 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                     }
                 });
             }
-            else command.emit("gpsinfo", player.playerid);
+            else CMD.emit("gpsinfo", player.playerid);
             break;
         }
         case DIALOG_EDIT_GPS: {
@@ -705,7 +705,7 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                     }
                 });
             }
-            else command.emit("editgps", player.playerid, [PlayerInfo.Current_Edit_GPS[player.playerid]]);
+            else CMD.emit("editgps", player.playerid, [PlayerInfo.Current_Edit_GPS[player.playerid]]);
             break;
         }
         case DIALOG_DELETE_GPS_SELECT_CATEGORY: {
@@ -956,12 +956,12 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                     }
                 });
             }
-            else command.emit("gps", player.playerid);
+            else CMD.emit("gps", player.playerid);
             break;
         }
         case DIALOG_KILL_CP: {
             if(response) {
-                command.emit("killcp", player.playerid);
+                CMD.emit("killcp", player.playerid);
             }
             break;
         }
@@ -1111,7 +1111,7 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                     }
                 }
             }
-            else command.emit("mycars", player.playerid);
+            else CMD.emit("mycars", player.playerid);
         }
         case DIALOG_MYCARS_MANAGE_COLOR2: {
             if(response) {
@@ -1130,7 +1130,7 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                     }
                 }
             }
-            else command.emit("mycars", player.playerid);
+            else CMD.emit("mycars", player.playerid);
         }
         case DIALOG_MYCARS_MANAGE_TEXT: {
             if(response) {
@@ -1148,7 +1148,7 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                 }
                 else sendError(player.playerid, errors.UNEXPECTED_ERROR);
             }
-            else command.emit("mycars", player.playerid);
+            else CMD.emit("mycars", player.playerid);
             break;
         }
         case DIALOG_MYCARS_MANAGE_TEXT_EDIT: {
@@ -1160,7 +1160,7 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                     }
                 }
             }
-            else command.emit("mycars", player.playerid);
+            else CMD.emit("mycars", player.playerid);
             break;
         }
         case DIALOG_MYCARS_MANAGE_TEXT_EDIT_NAME: {
@@ -1182,7 +1182,7 @@ samp.OnDialogResponse((player, dialogid, response, listitem, inputtext) => {
                     else sendError(player.playerid, errors.UNEXPECTED_ERROR);
                 });
             }
-            else command.emit("mycars", player.playerid);
+            else CMD.emit("mycars", player.playerid);
             break;
         }
         case DIALOG_CREATE_PERSONAL_CAR: {

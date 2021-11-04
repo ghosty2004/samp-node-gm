@@ -2287,6 +2287,17 @@ CMD.on("set", (playerid, params) => {
 });
 
 /* Admin 2 */
+CMD.on("announce", (playerid, params) => {
+    if(PlayerInfo.Admin[playerid] >= 2) {
+        if(!isNaN(params[0]) && !isNaN(params[1]) && params.slice(2).join(" ")) {
+            params[0] = parseInt(params[0]);
+            params[1] = parseInt(params[1]) * 1000;
+            samp.GameTextForAll(params.slice(2).join(" "), params[1], params[0]);
+        }
+        else sendSyntax(playerid, "/announce [Style] [Seconds] [Text]");
+    }
+    else sendError(playerid, errors.ADMIN_LEVEL_MISSING);
+});
 // null...
 
 

@@ -1919,6 +1919,7 @@ function loadFromDB() {
     loadPersonalCars();
     LoadHouses();
     LoadServerConfig();
+    LoadFactions();
 }
 global.loadFromDB = loadFromDB;
 
@@ -2013,6 +2014,35 @@ function LoadServerConfig() {
             samp.SendRconCommand(`gamemodetext ${result[0].modename}`);
             samp.SendRconCommand(`password ${result[0].password}`);
             console.log("Loaded server config");
+        }
+    });
+}
+
+function LoadFactions() {
+    con.query("SELECT * FROM factions", function(err, result) {
+        if(result != 0 && !err) {
+            for(let i = 0; i < result.length; i++) {
+                var X = result[i].id;
+                FactionInfo.Name[X] = result[i].name;
+                FactionInfo.Spawn.x[X] = result[i].spawn_x;
+                FactionInfo.Spawn.y[X] = result[i].spawn_y;
+                FactionInfo.Spawn.z[X] = result[i].spawn_z;
+                FactionInfo.Enter.x[X] = result[i].enter_pos_x;
+                FactionInfo.Enter.y[X] = result[i].enter_pos_y;
+                FactionInfo.Enter.z[X] = result[i].enter_pos_z;
+                FactionInfo.Exit.x[X] = result[i].exit_pos_x;
+                FactionInfo.Exit.y[X] = result[i].exit_pos_y;
+                FactionInfo.Exit.z[X] = result[i].exit_pos_z;
+                FactionInfo.Interior_Id[X] = result[i].interior_id;
+                FactionInfo.Skin_Id[X] = result[i].skin_id;
+                FactionInfo.Ranks._1_[X] = result[i].rank_1;
+                FactionInfo.Ranks._2_[X] = result[i].rank_2;
+                FactionInfo.Ranks._3_[X] = result[i].rank_3;
+                FactionInfo.Ranks._4_[X] = result[i].rank_4;
+                FactionInfo.Ranks._5_[X] = result[i].rank_5;
+                FactionInfo.Ranks._6_[X] = result[i].rank_6;
+                FactionInfo.Ranks._7_[X] = result[i].rank_7;
+            }
         }
     });
 }

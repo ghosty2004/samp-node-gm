@@ -13,7 +13,7 @@ const events = require("events"); global.events = events; /* npm install events 
 
 // => SA:MP Variables
 const NAME = "e-Force Romania RPG"; global.NAME = NAME;
-const GM_TEXT = "e-Force v1.0"; global.GM_TEXT = GM_TEXT;
+const GM_TEXT = "v1.0"; global.GM_TEXT = GM_TEXT;
 const CMD = new events.EventEmitter(); 
 
 const errors = {
